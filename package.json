@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "express-rest-api-startup-planet",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -7,7 +7,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "iviktorry",
   "license": "ISC",
   "description": "",
   "devDependencies": {
