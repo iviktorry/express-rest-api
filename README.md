@@ -1,6 +1,6 @@
 # 🚀 Express.js REST API — Startup Planet
 
-A lightweight, clean REST API built with **Express.js**, **Express Router**, and **ES Modules**. Designed to serve structured data about global tech startups with support for advanced filtering via query parameters, dynamic path route matching, and CORS policy configuration.
+A lightweight, clean REST API built with **Express.js**, **Express Router**, and **ES Modules**. Designed to serve structured data about global tech startups with support for advanced filtering via query parameters and dynamic path route matching.
 
 > **Note on Live Demo:**
 
@@ -20,11 +20,10 @@ A lightweight, clean REST API built with **Express.js**, **Express Router**, and
 ## 🛠 Tech Stack & Key Features
 
 - **Runtime & Framework:** Node.js, Express.js (v4+)
-- **Module System:** ES Modules (`"type": "module"`)
 - **Routing Architecture:** Modular `express.Router()` separating routes from controller logic
-- **Cross-Origin Access:** Configured via `cors` middleware for seamless frontend integration (e.g., React)
-- **Query Filtering:** Multi-param search supporting strings (`industry`, `country`, `continent`) and boolean conversion (`is_seeking_funding`, `has_mvp`)
-- **Dynamic Path Routing:** Dynamic parameter resolution for explicit field filtering (`/api/:field/:term`) with field validation (`country`, `continent`, `industry`)
+- **Cross-Origin Access:** Express CORS middleware configured for cross-origin access
+- **Query Filtering:** Multi-param search supporting strings and boolean conversion
+- **Dynamic Path Routing:** Dynamic parameter resolution for explicit field filtering with field validation
 
 ---
 
@@ -46,38 +45,29 @@ A lightweight, clean REST API built with **Express.js**, **Express Router**, and
 
 ## 🔌 API Endpoints & Usage
 
-### 1. Get All Startups (with Query Parameters)
+### 1. Retrieve & Filter All Startups
 
-- **Endpoint:** `GET /api`
-- **Description:** Retrieves all startup records. Supports filtering via query parameters.
+`GET /api`
 
-| Query Parameter      | Type      | Description               | Example                    |
-| :------------------- | :-------- | :------------------------ | :------------------------- |
-| `industry`           | `string`  | Filter by industry domain | `?industry=Fintech`        |
-| `country`            | `string`  | Filter by country name    | `?country=Poland`          |
-| `continent`          | `string`  | Filter by continent       | `?continent=Europe`        |
-| `is_seeking_funding` | `boolean` | Filter by funding status  | `?is_seeking_funding=true` |
-| `has_mvp`            | `boolean` | Filter by MVP presence    | `?has_mvp=true`            |
+Filters the dataset dynamically based on URL search query parameters. Supports combining multiple criteria in a single request.
 
-**Example Request:**
-
-```http
-GET /api?continent=Europe&is_seeking_funding=true&has_mvp=true
-```
+| Parameter            | Type      | Example      | Description                                   |
+| :------------------- | :-------- | :----------- | :-------------------------------------------- |
+| `industry`           | `string`  | `healthcare` | Filter by industry sector                     |
+| `country`            | `string`  | `sweden`     | Filter by headquarters country                |
+| `continent`          | `string`  | `europe`     | Filter by geographical region                 |
+| `is_seeking_funding` | `boolean` | `true`       | Filter by current funding status              |
+| `has_mvp`            | `boolean` | `true`       | Filter by minimum viable product availability |
 
 ---
 
-### 2. Get Startups by Path Parameters
+### 2. Filter by Path Parameter
 
-- **Endpoint:** `GET /api/:field/:term`
-- **Allowed Fields:** `country`, `continent`, `industry`
-- **Description:** Dynamically matches startups based on a specific allowed field and value.
+`GET /api/:field/:term`
 
-**Example Request:**
+Dynamic parameter lookup against pre-approved dataset fields.
 
-```http
-GET /api/country/Sweden
-```
+Valid Fields: `country`, `continent`, `industry`
 
 ---
 
@@ -85,8 +75,8 @@ GET /api/country/Sweden
 
 ```bash
 # Clone the repository
-git clone https://github.com/iviktorry/natural-wonders-node-rest-api.git
-cd natural-wonders-node-rest-api
+git clone https://github.com/iviktorry/startups-planet-express-rest-api.git
+cd startups-planet-express-rest-api
 
 # Install dependencies
 npm install
